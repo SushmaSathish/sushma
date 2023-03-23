@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Registration form</title>
+    <style>
+        form,h2{
+            text-align:center;
+            line-height: 30px;
+            background-color: orange;
+            border-width: 50px 10px;
+            padding: 10PX;
+        }
+        label
+        {
+          display:block;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          
+          text-decoration: orange;;
+        }
+        .box{
+        width:700px;
+        align-content: center; 
+        margin:auto;
+        border-style: solid;
+        box-sizing: border-box;
+        border-color: orange;
+        border-radius: 10px;
+          
+        }
+        input {
+        border: 2px solid white;
+        height: 0.5cm;
+        }
+        
+
+    </style>
+</head>
+<body>
+    
+   <div class="box">
+    
+    <form action="#" onsubmit="registration(event)" >
+        <h2>Book a call</h2>
+
+    <label for ="Name">Name</label>
+    <input id="name" type="text" name="Name" size="40">
+    
+    <br>
+    <label for type="email">E-mail</label>
+    <input id="email" type="email" name="email"size="40">
+    </br>
+    <br>
+    <label for type="number">Phone number</label>
+    <input id="number" type="number" name="Phone number">
+    </br>
+    <br>
+    <label for type="Time">Time for call</label>
+    <input id="Time" type="Time" name="Time">
+    <input id="date" type="Time" name="Date">
+    </br>
+    <button>Get a Call</button>
+    
+</form>
+</div>
+</body>
+</html>

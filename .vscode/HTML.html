@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>registration form</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      dfer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Book a Call</h2>
+      <form class="form-group" action="#" onsubmit="registration(event)">
+        <label class="form-label" for="name">Name</label>
+        <input
+          class="form-control"
+          type="text"
+          name="name"
+          id="name"
+          size="80"
+        />
+        <br />
+        <label class="form-label" for="email">E-mail</label>
+        <input
+          class="form-control"
+          type="email"
+          name="email"
+          id="email"
+          size="80"
+        />
+        <br />
+        <label class="form-label" for="numer">Phone Number</label>
+        <input
+          class="form-control"
+          type="number"
+          name="phone number"
+          id="number"
+        />
+        <br />
+        <label class="form-label" for="time">Time to call</label>
+        <input class="form-control" type="time" name="time" id="time" />
+        <input class="form-control" type="date" name="date" id="time" />
+        <br />
+        <button type="submit" class="btn">submit</button>
+      </form>
+    </div>
+    <script>
+      function registration(event) {
+        event.preventDefault();
+        const NAme = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("number").value;
+        console.log(NAme);
+        console.log(email);
+        console.log(phone);
+      }
+      let btn = document.querySelector(".btn");
+      btn.addEventListener("click", (e) => {
+        document.querySelector(".form-group").style.background = "orange";
+      });
+      btn.addEventListener("mouseout", (e) => {
+        document.querySelector(".form-group").style.background = "red";
+      });
+      btn.addEventListener("mouseover", (e) => {
+        document.querySelector(".form-group").style.background = "green";
+      });
+    </script>
+  </body>
+</html>
