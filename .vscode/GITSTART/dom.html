@@ -34,6 +34,7 @@
           <li class="list-group-item">Item 3</li>
           <li class="list-group-item">Item 4</li>
         </ul>
+        <span></span>
       </div>
     </div>
     <script>
@@ -43,16 +44,38 @@
       //var item = document.querySelector(".list-group-item:nth-child(2)");
       //console.log(item);
       //item.style.color = "green";
-      var THirdElement = document.querySelector(
-        ".list-group-item:nth-child(3)"
-      );
-      THirdElement.style.display = "none";
-      var odd = document.querySelectorAll(".list-group-item:nth-child(odd)");
-      for (var i = 0; i < odd.length; i = i + 1) {
-        odd[i].style.backgroundColor = "green";
-      }
-      var SecItem = document.querySelectorAll(".list-group-item");
-      SecItem[1].style.color = "green";
+      /*var THirdElement = document.querySelector(
+          ".list-group-item:nth-child(3)"
+        );
+        THirdElement.style.display = "none";
+        var odd = document.querySelectorAll(".list-group-item:nth-child(odd)");
+        for (var i = 0; i < odd.length; i = i + 1) {
+          odd[i].style.backgroundColor = "green";
+        }
+        var SecItem = document.querySelectorAll(".list-group-item");
+        SecItem[1].style.color = "green";*/
+      var itemList = document.querySelector("#items");
+      console.log(itemList.parentNode.parentNode.parentNode);
+      console.log(itemList.parentElement);
+      console.log(itemList.lastElementChild);
+      console.log(itemList.lastChild);
+      console.log(itemList.firstElementChild);
+      console.log(itemList.firstChild);
+      console.log(itemList.nextSibling);
+      console.log(itemList.nextElementSibling);
+      console.log(itemList.previousSibling);
+      console.log(itemList.previousElementSibling);
+      var newDiv = document.createElement("div");
+      newDiv.className = "helloworld";
+      newDiv.id = "hw";
+      newDiv.setAttribute("title", "Hellodiv");
+
+      var newDivText = document.createTextNode("Hello World");
+      newDiv.appendChild(newDivText);
+      var container = document.querySelector("header .container");
+      var h1 = document.querySelector("header h1");
+      console.log(newDiv);
+      container.insertBefore(newDiv, h1);
     </script>
   </body>
 </html>
