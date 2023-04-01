@@ -4,22 +4,38 @@
   <body>
     <form onsubmit="saveToLocalStorage(event)">
       <label>Name</label>
-      <input type=" text" , id="Username" reqiured />
-      <label>Emailid</label>
-      <input type=" email" , id="Emailid" reqiured />
+      <input type=" text" , name="Username" reqiured />
+      <label>Email</label>
+      <input type=" email" , name="email" reqiured />
       <label>Phone Number</label>
-      <input type="tel" , id="Phone" />
-      <button>SUbmit</button>
+      <input type="tel" , name="Phone" />
+      <button>Submit</button>
     </form>
+    <ul id="list of items"></ul>
     <script>
       function saveToLocalStorage(event) {
         event.preventDefault();
         const name = event.target.Username.value;
-        const email = event.target.Emailid.value;
-        const PhoneNumber = event.target.Phone.value;
-        localStorage.setItem("Username", name);
-        localStorage.setItem("email", email);
-        localStorage.setItem("PhoneNumber", number);
+        const email = event.target.email.value;
+        const Phone = event.target.Phone.value;
+        // localStorage.setItem("Username", name);
+        //localStorage.setItem("Emailid", email);
+        // localStorage.setItem("PhoneNumber", number);
+
+        const obj = {
+          name,
+          email,
+          Phone,
+        };
+
+        localStorage.setItem(obj.email, JSON.stringify(obj));
+        showUsersOnScreen(obj);
+      }
+      function showUsersOnScreen(obj) {
+        const parentElem = document.getElementById("list of items");
+        const childElem = document.createElement("li");
+        childElem.textContent = obj.name + "-" + obj.Phone + "-" + obj.email;
+        parentElem.appendChild(childElem);
       }
     </script>
   </body>
