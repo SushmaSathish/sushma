@@ -13,36 +13,46 @@
     </form>
     <ul id="list of items"></ul>
     <script>
-      /* function saveToLocalStorage(event) {
-         event.preventDefault();
-         const name = event.target.Username.value;
-         const email = event.target.email.value;
-         const Phone = event.target.Phone.value;
-         // localStorage.setItem("Username", name);
-         //localStorage.setItem("Emailid", email);
-         // localStorage.setItem("PhoneNumber", number);
+      function saveToLocalStorage(event) {
+        event.preventDefault();
+        const name = event.target.Username.value;
+        const email = event.target.email.value;
+        const Phone = event.target.Phone.value;
+        // localStorage.setItem("Username", name);
+        //localStorage.setItem("Emailid", email);
+        // localStorage.setItem("PhoneNumber", number);
 
-         /*const obj = {
-           name,
-           email,
-           Phone,
-         };
+        const obj = {
+          name,
+          email,
+          Phone,
+        };
 
-         localStorage.setItem(obj.email, JSON.stringify(obj));
-         showUsersOnScreen(obj);
-       }
-       function showUsersOnScreen(obj) {
-         const parentElem = document.getElementById("list of items");
-         const childElem = document.createElement("li");
-         childElem.textContent = obj.name + "-" + obj.Phone + "-" + obj.email;
-         parentElem.appendChild(childElem);
-       }*/
-      let myobj = {
+        localStorage.setItem(obj.email, JSON.stringify(obj));
+        showUsersOnScreen(obj);
+      }
+      function showUsersOnScreen(obj) {
+        const parentElem = document.getElementById("list of items");
+        const childElem = document.createElement("li");
+        childElem.textContent = obj.name + "-" + obj.Phone + "-" + obj.email;
+        let deletebutton = document.createElement("input");
+        deletebutton.type = "button";
+        deletebutton.value = "delete";
+        deletebutton.onclick = () => {
+          localStorage.removeItem(obj.email);
+          parentElem.removeChild(childElem);
+        };
+
+        childElem.appendChild(deletebutton);
+        parentElem.appendChild(childElem);
+      }
+
+      /*  let myobj = {
         name: "sushma",
         age: 24,
       };
       let myobj_serilised = JSON.stringify(myobj);
-      localStorage.setItem("myobj", myobj_serilised);
+      localStorage.setItem("myobj", myobj_serilised);*/
     </script>
   </body>
 </html>
