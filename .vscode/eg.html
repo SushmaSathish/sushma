@@ -47,10 +47,10 @@
         editbutton.value = "Edit";
         editbutton.onclick = () => {
           localStorage.removeItem(obj.email);
-          parentElem.appendchild(childElem);
-          document.getElementById("UsernameInputTag").value = obj.name;
-          document.getElementById("emailInputTag").value = obj.email;
-          document.getElementById("PhoneInputTag").value = obj.Phone;
+          parentElem.removeChild(childElem);
+          document.getElementById("Username").value = obj.name;
+          document.getElementById("email").value = obj.email;
+          document.getElementById("Phone").value = obj.Phone;
         };
 
         childElem.appendChild(deletebutton);
