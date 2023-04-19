@@ -83,7 +83,7 @@
               console.log(error);
             });
         };
-        /*let editbutton = document.createElement("input");
+        let editbutton = document.createElement("input");
         editbutton.type = "button";
         editbutton.value = "Edit";
         editbutton.onclick = () => {
@@ -102,10 +102,10 @@
           document.getElementById("Username").value = obj.name;
           document.getElementById("email").value = obj.email;
           document.getElementById("Phone").value = obj.Phone;
-        };*/
+        };
 
         childElem.appendChild(deletebutton);
-        //childElem.appendChild(editbutton);
+        childElem.appendChild(editbutton);
         parentElem.appendChild(childElem);
       }
 
