@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <title>Waiter's Order list page</title>
+  </head>
+  <body>
+    <div
+      class="bg-image"
+      style="
+        background-image: url('waiters.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        height: 150vh;
+        background-position: center;
+      "
+    >
+      <div class="container mt-1">
+        <h1 class="display-12 text-center fw-bold">
+          🍽️Waiter's <span class="text-primary">orders list </span> 𝐩𝐚𝐠𝐞
+        </h1>
+      </div>
+      <hr
+        style="
+          border-top: 5px solid black;
+          width: 50%;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      />
+      <div class="container mt-1">
+        <form
+          class="container col-md-4"
+          id="form"
+          onsubmit="saveToCrudCrud(event)"
+        >
+        <div class="form-group mb-1 mt-1">
+          <label for="Dish_name" class="form-label fw-bold">Dish name</label>
+      <input
+        id="Dish_name"
+        class="form-control"
+        type="text"
+        name="Dish_name"
+        placeholder="...𝓽𝔂𝓹𝓮 𝓽𝓱𝓮 𝓭𝓲𝓼𝓱 𝓷𝓪𝓶𝓮"
+        required
+        /> 
+        </div>
+        <div class="form-group mb-1 mt-1">
+        <label for="price" class="form-label fw-bold">Price</label>
+        <div class="input-group">
+        <div class="input-group-text rounded-pill">₹</div>    
+        <input
+          id="price"
+          class="form-control rounded-pill"
+          type="number"
+          name="price"
+          placeholder="...𝓔𝓷𝓽𝓮𝓻 𝓹𝓻𝓲𝓬𝓮"
+          required
+        />
+        </div>
+        </div>
+          <div class="form-group mb-1 mt-1">
+            <label for="Table" class="form-label fw-bold">Choose a table</label>
+          <select class="form-select" name="table">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+          </div>
+          <div class="form-group mb-1 mt-1">
+            <button type="submit" class="btn btn-dark btn-block rounded-pill">
+              Add Product
+            </button>
+          </div>
+        </div>
+        </form>
+        <div class="container mt-1">
+        <h3 class="fw-bold">🍱Orders</h3>
+        <ul id="list-of-items"></ul>
+        <ul id ="Table1">Table 1</ul>
+        <ul id ="Table2">Table 2</ul>
+         <ul id ="Table3">Table 3</ul>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+    <script>
+      async function saveToCrudCrud(event) {
+        try {
+          event.preventDefault();
+          let form = document.getElementById("form");
+          let price = event.target.price.value;
+          let Dish_name = event.target.Dish_name.value;
+          let tableno = event.target.table.value;
+                const obj = {
+                  price,
+                  Dish_name,tableno
+                }
+                const response= await axios.post("https://crudcrud.com/api/457aa9bd8c9c418491f5beec28b491b9/orders",obj)
+                showusersOnScreen(response.data);
+              }
+              catch(error){
+                     document.body.innerHTML=document.body.innerHTML+"<h4>Something went wrong</h4>";
+                     console.log(error);
+                }
+
+              }
+      
+      //show details on screen
+    async function showusersOnScreen(obj) {
+    try {
+    let parentEle = document.getElementById(`list-of-items`);
+    let childEle = document.createElement("li");
+    childEle.textContent =
+      "🍛" + obj.Dish_name + ": ₹"+ obj.price + "=>" + obj.tableno;
+    let deletebtn = document.createElement("input");
+    deletebtn.type = "button";
+    deletebtn.value = "Delete Order❌";
+    deletebtn.classList = "btn btn-dark ms-1 rounded-pill";
+    deletebtn.onclick = async () => {
+      try{
+      let res = await axios.delete(
+        `https://crudcrud.com/api/457aa9bd8c9c418491f5beec28b491b9/orders/${obj._id}`
+      );
+      console.log(res);
+      tableList.removeChild(childEle);
+    }catch(error){
+        console.log(error)
+    }
+    };
+    let tableList = document.getElementById(`Table${obj.tableno}`);
+    if (tableList) {
+      tableList.appendChild(childEle);
+      childEle.appendChild(deletebtn);
+      child.classList = "list-group-item fw-medium";
+          parent.classList = "mb-3 mt-3 fs-4";
+    } else {
+      let tableEle = document.createElement("ul");
+      tableEle.id = `Table${obj.tableno}`;
+      tableEle.textContent = `Table ${obj.tableno}`;
+      tableEle.appendChild(childEle);
+      childEle.appendChild(deletebtn);
+      child.classList = "list-group-item fw-medium";
+          parent.classList = "mb-3 mt-3 fs-4";
+      document.body.appendChild(tableEle);
+    }
+ 
+  }
+  catch(error){
+        console.log(error)
+    }
+  }
+
+     
+  window.addEventListener("DOMContentLoaded", async(e) =>{
+    try{
+        let response = await axios.get("https://crudcrud.com/api/457aa9bd8c9c418491f5beec28b491b9/orders")    
+        for(let i=0 ; i<response.data.length ; i++){
+                showusersOnScreen(response.data[i])
+               }
+            }
+    catch(error){
+        console.log(error)
+    }
+      });
+    </script>
+  </body>
+</html>

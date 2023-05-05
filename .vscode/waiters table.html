@@ -16,6 +16,23 @@
     <title>Waiter's Order List</title>
 </head>
 <body>
+  <div
+  class="bg-image"
+  style="
+    background-image: url('images/dish.jpg;');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 125vh;
+    background-position: center;
+  "
+>
+  <div class="container mt-4">
+    <h1 class="display-6 text-center fw-bold">
+      Waiter's  <span class="text-warning"> Order List</span> 𝐩𝐚𝐠𝐞
+    </h1>
+  </div>
+  </div>
     
     <form id="form" onsubmit="saveToCrudCRud(event)">
         <label for="price" class="form-label">Choose a price</label>
@@ -43,13 +60,16 @@
             <option>2</option>
             <option>3</option>
           </select>
-          <button class="form-inline" ,id="add dish">Add dish</button>
+          <button class="btn btn-dark btn-block rounded-pill" ,id="add dish">Add dish</button>
           <h3 id="Orders"></h3>
          
           <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.6/axios.min.js"></script>
           
             <h2>Orders</h2>
-          <ul id ="list of items"></ul>
+            <ul id ="list of items"></ul>
+              <ul id ="Table1">Table 1</ul>
+              <ul id ="Table2">Table 2</ul>
+               <ul id ="Table3">Table 3</ul>
          
          
           
@@ -66,7 +86,7 @@
                   price,
                   Dish_name,tableno
                 }
-                const response= await axios.post("https://crudcrud.com/api/68f9fc302bb24e98a60538d2fd037ec1/orders",obj)
+                const response= await axios.post("https://crudcrud.com/api/e81f652b9ea34aa29b3347940093d605/orders",obj)
                 showusersOnScreen(response.data);
               }
               catch(error){
@@ -75,50 +95,26 @@
                 }
 
               }
-           /*   async function showusersOnScreen(obj) {
-        try {
-        let parentEle = document.getElementById(`list of items`);
-        let childEle = document.createElement("li");
-        childEle.textContent =
-        obj.price + "-" + obj.Dish_name+"-"+obj.tableno;
-        let deletebtn = document.createElement("input");
-        deletebtn.type = "button";
-        deletebtn.value = "delete order";
-        deletebtn.onclick = async() => {
-         let res= await axios.delete(`https://crudcrud.com/api/4c9c0d0a92924214ba980ad13ed42b45/orders/${obj._id}`)
-          console.log(res)
-          parentEle.removeChild(childEle);
-        };
-        
-      // let tableList = document.getElementById(`Table${obj.tableno}`);
-        tableList.appendChild(childEle);
-        
-        childEle.appendChild(deletebtn);
-        parentEle.appendChild(childEle);
-       
-       
-    }
-  } 
-  catch (error) {
-    console.log(error);
-  }
-}*/async function showusersOnScreen(obj) {
-  try {
+    async function showusersOnScreen(obj) {
+    try {
     let parentEle = document.getElementById(`list of items`);
     let childEle = document.createElement("li");
     childEle.textContent =
-      obj.price + "-" + obj.Dish_name + "-" + obj.tableno;
+      "🍛" + obj.Dish_name + "₹"+ obj.price + "-" + obj.tableno;
     let deletebtn = document.createElement("input");
     deletebtn.type = "button";
-    deletebtn.value = "delete order";
+    deletebtn.value = "Delete Order❌";
     deletebtn.onclick = async () => {
+      try{
       let res = await axios.delete(
-        `https://crudcrud.com/api/68f9fc302bb24e98a60538d2fd037ec1/orders/${obj._id}`
+        `https://crudcrud.com/api/e81f652b9ea34aa29b3347940093d605/orders/${obj._id}`
       );
       console.log(res);
-      parentEle.removeChild(childEle);
+      tableList.removeChild(childEle);
+    }catch(error){
+        console.log(error)
+    }
     };
-
     let tableList = document.getElementById(`Table${obj.tableno}`);
     if (tableList) {
       tableList.appendChild(childEle);
@@ -131,6 +127,7 @@
       childEle.appendChild(deletebtn);
       document.body.appendChild(tableEle);
     }
+ 
   }
   catch(error){
         console.log(error)
@@ -141,7 +138,7 @@
 
     window.addEventListener("DOMContentLoaded", async(e) =>{
     try{
-        let response = await axios.get("https://crudcrud.com/api/68f9fc302bb24e98a60538d2fd037ec1/orders")    
+        let response = await axios.get("https://crudcrud.com/api/e81f652b9ea34aa29b3347940093d605/orders")    
         for(let i=0 ; i<response.data.length ; i++){
                 showusersOnScreen(response.data[i])
                }
@@ -153,7 +150,7 @@
 })
 
     
-              </script>
+</script>
     
 </body>
 </html>
