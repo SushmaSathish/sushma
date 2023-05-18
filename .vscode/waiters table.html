@@ -86,7 +86,7 @@
                   price,
                   Dish_name,tableno
                 }
-                const response= await axios.post("https://crudcrud.com/api/e81f652b9ea34aa29b3347940093d605/orders",obj)
+                const response= await axios.post("https://crudcrud.com/api/fe6687f6d2b04ababc8e1f41962a0a98/orders",obj)
                 showusersOnScreen(response.data);
               }
               catch(error){
@@ -107,7 +107,7 @@
     deletebtn.onclick = async () => {
       try{
       let res = await axios.delete(
-        `https://crudcrud.com/api/e81f652b9ea34aa29b3347940093d605/orders/${obj._id}`
+        `https://crudcrud.com/api/fe6687f6d2b04ababc8e1f41962a0a98/orders/${obj._id}`
       );
       console.log(res);
       tableList.removeChild(childEle);
@@ -138,7 +138,7 @@
 
     window.addEventListener("DOMContentLoaded", async(e) =>{
     try{
-        let response = await axios.get("https://crudcrud.com/api/e81f652b9ea34aa29b3347940093d605/orders")    
+        let response = await axios.get("https://crudcrud.com/api/fe6687f6d2b04ababc8e1f41962a0a98/orders")    
         for(let i=0 ; i<response.data.length ; i++){
                 showusersOnScreen(response.data[i])
                }

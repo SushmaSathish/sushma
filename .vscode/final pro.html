@@ -42,7 +42,7 @@
       />
       <div class="container mt-1">
         <form
-          class="container col-md-4"
+          class="container col-md-6"
           id="form"
           onsubmit="saveToCrudCrud(event)"
         >
@@ -108,7 +108,7 @@
                   price,
                   Dish_name,tableno
                 }
-                const response= await axios.post("https://crudcrud.com/api/457aa9bd8c9c418491f5beec28b491b9/orders",obj)
+                const response= await axios.post("https://crudcrud.com/api/7e57616dfc364359a845485d850e98b8/orders",obj)
                 showusersOnScreen(response.data);
               }
               catch(error){
@@ -132,7 +132,7 @@
     deletebtn.onclick = async () => {
       try{
       let res = await axios.delete(
-        `https://crudcrud.com/api/457aa9bd8c9c418491f5beec28b491b9/orders/${obj._id}`
+        `https://crudcrud.com/api/7e57616dfc364359a845485d850e98b8/orders/${obj._id}`
       );
       console.log(res);
       tableList.removeChild(childEle);
@@ -166,7 +166,7 @@
      
   window.addEventListener("DOMContentLoaded", async(e) =>{
     try{
-        let response = await axios.get("https://crudcrud.com/api/457aa9bd8c9c418491f5beec28b491b9/orders")    
+        let response = await axios.get("https://crudcrud.com/api/7e57616dfc364359a845485d850e98b8/orders")    
         for(let i=0 ; i<response.data.length ; i++){
                 showusersOnScreen(response.data[i])
                }
